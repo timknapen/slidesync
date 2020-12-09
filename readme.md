@@ -28,15 +28,8 @@ We'll also run the websocket server on this machine.
 
 ### Socket server
 
- Open Terminal.app and type these commands. 
-(Press return at the end of each line)
-
-This will start the socket server
- 
-	cd /Applications/MAMP/htdocs/slidesync/socketserver
-
-	./runner.sh
- 
+Start the socketserver by double clicking **runner.command** in `slidesync/socketserver/`
+Don't close the terminal window that opens.
 To shut down the socket server, type `ctrl+c`
 
 
