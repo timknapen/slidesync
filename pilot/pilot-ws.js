@@ -13,7 +13,7 @@ var wsRetryCount = 0;
 
 // choose the websocket URL
 //--------------------------------------------------
-var socketURL = 'ws://prototypeclub.local:8080/'; ///<<<< EDIT THIS
+var socketURL = 'ws://thea.local:8080/'; ///<<<< EDIT THIS
 
 
 // transmit over ws if you are the pilot

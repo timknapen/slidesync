@@ -57,7 +57,7 @@ function selectSlide(filenumber) {
             $element = $('<div class="slide"><img src="./files/' + filename + '"/></div>');
             break;
         case 'mp4':
-            $element = $('<div class="slide"><video autoplay muted playsinline > <source src="./files/' + filename + '" type="video/mp4" /></video></div>');
+            $element = $('<div class="slide"><video autoplay playsinline > <source src="./files/' + filename + '" type="video/mp4" /></video></div>');
         break;
     }
     $('body').append($element);
