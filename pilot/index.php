@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Websocket Pilot</title>
+        <link 	href="./pilot.css" type="text/css"	rel="stylesheet"  />
+		<script src="../_js/jquery-3.4.1.min.js" type="text/javascript"></script>
+		<script src="./pilot-ws.js" 		type="text/javascript"></script>
+		<script src="./pilot.js" 		type="text/javascript"></script>
+		
+		<meta name="viewport" content="width=525"> 
+		<!-- unscalable window -->
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		
+	</head>
+	<body>
+		<div id="slidenr"></div>
+		<div class="buttons">
+			<div class="button" target="forward" id="prevbutton"></div>
+			<div class="button" target="backward" id="nextbutton"></div>
+		</div>
+	</body>
+</html>
