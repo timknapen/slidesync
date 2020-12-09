@@ -1,10 +1,10 @@
 /*
-*
-*  Websocket synced slides test
-*  (c)2020 Tim Knapen
-*  www.timknapen.be
-*
-*/
+ *
+ *  Websocket synced slides test
+ *  (c)2020 Tim Knapen
+ *  www.timknapen.be
+ *
+ */
 
 var conn;
 var wsTimer = null;
@@ -13,7 +13,7 @@ var wsRetryCount = 0;
 
 // choose the websocket URL
 //--------------------------------------------------
-var socketURL = 'ws://thea.local:8080/'; ///<<<< EDIT THIS
+var socketURL = 'ws://prototypeclub.local:8080/'; ///<<<< EDIT THIS
 
 
 // transmit over ws if you are the pilot
@@ -28,12 +28,28 @@ function targetSlide(slideid) {
     conn.send(txt);
 }
 
+
+//--------------------------------------------------
+function showMessage(mssg) {
+
+    console.log(mssg);
+    $('#message').html(mssg);
+    $('#message').removeClass('hidden');
+}
+
+//--------------------------------------------------
+function hideMessage() {
+    $('#message').addClass('hidden');
+}
+
+
 //--------------------------------------------------
 function retryConnection() {
     conn = null;
+    showMessage('WS retrying in 3 sec...');
+
     if (wsTimer == null) {
         wsTimer = setTimeout(connectSocket, 3000); // retry connection in 5 seconds
-        console.log('WS retrying in 3sec');
     }
 }
 
@@ -41,45 +57,47 @@ function retryConnection() {
 function connectSocket() {
     clearTimeout(wsTimer);
     wsTimer = null;
-    if (wsRetryCount > 5) {
-        console.log("Exhausted max ws retries");
+    if (wsRetryCount > 50) {
+        showMessage("Exhausted max ws retries");
         return;
     }
     wsRetryCount++;
-    console.log("Creating ws nr." + wsRetryCount);
+    showMessage("Creating ws nr." + wsRetryCount);
 
     if (conn != null) {
-        console.log('WS closing existing connection')
+        showMessage('WS closing existing connection')
         conn.close();
     }
     conn = new WebSocket(socketURL + wsPilotToken);
-    if (typeof (conn.url) == 'undefined') {
+    if (typeof(conn.url) == 'undefined') {
         // Safari defines 'URL'
-        console.log('WS Trying to connect to ' + conn.URL);
+        showMessage('WS Trying to connect to ' + conn.URL);
     } else {
         // Chrome defines 'url'
-        console.log('WS Trying to connect to ' + conn.url);
+        showMessage('WS Trying to connect to ' + conn.url);
     }
 
-    conn.onopen = function (e) {
-        if (typeof (conn.url) == 'undefined') {
+    conn.onopen = function(e) {
+        if (typeof(conn.url) == 'undefined') {
             // Safari defines URL
             console.log('WS connected on ' + conn.URL);
-
+            showMessage("Connected");
         } else {
             // Chrome defines url
             console.log('WS connected on ' + conn.url);
+            showMessage("Connected");
         }
     };
-    conn.onclose = function (e) {
-        console.log("WS connection closed!");
+    conn.onclose = function(e) {
+        showMessage("WS connection closed!");
         retryConnection();
     }
-    conn.onerror = function (e) {
-        console.log("WS connection error");
+    conn.onerror = function(e) {
+        showMessage("WS connection error");
         retryConnection();
     }
-    conn.onmessage = function (e) {
+    conn.onmessage = function(e) {
+        showMessage("Connected");
         var now = new Date();
         var message = e.data;
         if (message.length > 3) {
@@ -88,8 +106,7 @@ function connectSocket() {
                 // select a new target
                 var slideid = message.substr(1, message.length);
                 selectSlide(slideid);
-            }
-            else {
+            } else {
                 console.log("WS > " + message);
             }
         }

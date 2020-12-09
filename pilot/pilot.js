@@ -1,21 +1,19 @@
-
-
-
 var currentSlide = 0;
 
-$(function () {
-    $('.button').on('touchstart',function(){
+//--------------------------------------------------
+$(function() {
+    $('.button').on('touchstart', function() {
         flashButton($(this));
-       
+
     });
-    $('.button').click(function(){
+    $('.button').click(function() {
         var target = $(this).attr('target');
         flashButton($(this));
         console.log(target);
-        switch(target){
+        switch (target) {
             case 'forward':
                 prevSlide();
-            break;
+                break;
             case 'backward':
                 nextSlide();
                 break;
@@ -26,28 +24,31 @@ $(function () {
     updateSlideNr();
 });
 
-function flashButton($el){
+//--------------------------------------------------
+function flashButton($el) {
     $el.addClass('selected');
-    setTimeout(function(){
+    setTimeout(function() {
         $('.button').removeClass('selected');
     }, 100);
 }
 
-function nextSlide(){
-    currentSlide ++;
+//--------------------------------------------------
+function nextSlide() {
+    currentSlide++;
     updateSlideNr();
 }
 
-function prevSlide(){
+//--------------------------------------------------
+function prevSlide() {
     currentSlide--;
-    if(currentSlide < 0){
+    if (currentSlide < 0) {
         currentSlide = 0;
     }
     updateSlideNr();
 }
 
-function updateSlideNr(){
+//--------------------------------------------------
+function updateSlideNr() {
     targetSlide(currentSlide);
     $('#slidenr').html(currentSlide);
 }
-

@@ -48,7 +48,7 @@ function selectSlide(filenumber) {
 
 
     var extension = filename.split('.').pop();
-    $('body').empty();
+    $('#slideshow').empty();
 
     var $element = $(''); 
     switch(extension){
@@ -60,7 +60,7 @@ function selectSlide(filenumber) {
             $element = $('<div class="slide"><video autoplay playsinline > <source src="./files/' + filename + '" type="video/mp4" /></video></div>');
         break;
     }
-    $('body').append($element);
+    $('#slideshow').append($element);
 }
 
 
