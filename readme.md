@@ -46,6 +46,7 @@ On all the other computers, edit the images and videos in the `files` folder.
 
 Edit the list of files in `site/slidesync.js` so it matches the contents of the `files` folder.
 
+Start the slideshow simply by opening `index.html` in Safari or Chrome. The page should automatically connect to the socket server.
 
 
 ### Open the pilot page
